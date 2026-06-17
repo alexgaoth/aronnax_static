@@ -1,0 +1,14 @@
+# ── AMD ROCm GPU setup ────────────────────────────────────────────────────────
+# Do NOT `pip install -r` this file directly — torch must come from the ROCm
+# index. Run the two steps below (see README.md "AMD ROCm GPU" section).
+#
+#   1) ROCm PyTorch (pick the index matching your installed ROCm, e.g. 6.2):
+#        pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.2
+#
+#   2) Everything else:
+#        pip install -r requirements-rocm.txt
+#        pip install "git+https://github.com/facebookresearch/sam2.git"
+
+numpy
+opencv-python
+tqdm

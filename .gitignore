@@ -39,5 +39,7 @@ next-env.d.ts
 
 # Pipeline — Python env + model checkpoints
 /pipeline/.venv
+/pipeline/.venv-rocm
 /pipeline/checkpoints
+/checkpoints
 __pycache__/
