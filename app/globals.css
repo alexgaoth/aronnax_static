@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ────────────────────────────────────────────── */
+:root {
+  --grv-hard:  #1b2028;
+  --grv-base:  #232b34;
+  --grv-soft:  #293240;
+  --grv-card:  #2e3a48;
+  --grv-hover: #374554;
+  --grv-b:     #3e4e5e;
+  --grv-b2:    #4e6070;
+  --grv-fg:    #d8cdb8;
+  --grv-fg2:   #b8b0a0;
+  --grv-fg3:   #8a8480;
+  --grv-fg4:   #666260;
+  --grv-aqua:  #5f9ea8;
+  --grv-aqua2: #78b4c0;
+  --grv-blue:  #476f82;
+  --grv-amber: #c89a3c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--grv-hard);
+  color: var(--grv-fg);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--grv-hard); }
+::-webkit-scrollbar-thumb { background: var(--grv-b2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--grv-aqua); }
+
+/* ── Lab graph-paper grid ─────────────────────────────────────── */
+.lab-grid {
+  background-image:
+    linear-gradient(rgba(95,158,168,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95,158,168,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ── Section label ────────────────────────────────────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grv-aqua);
+  border-left: 2px solid var(--grv-aqua);
+  padding-left: 10px;
+}
+
+/* ── Cards ────────────────────────────────────────────────────── */
+.lab-card {
+  border: 1px solid var(--grv-b);
+  background: var(--grv-card);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.lab-card:hover {
+  border-color: var(--grv-aqua);
+  background: var(--grv-hover);
+}
+
+/* ── Horizontal rule ──────────────────────────────────────────── */
+.lab-hr {
+  border: none;
+  height: 1px;
+  background: var(--grv-b);
+}
+
+/* ── Code block ───────────────────────────────────────────────── */
+.lab-code {
+  background: var(--grv-hard);
+  border: 1px solid var(--grv-b);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  color: var(--grv-aqua2);
+  padding: 10px 14px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* ── Terminal panel ───────────────────────────────────────────── */
+.terminal {
+  background: var(--grv-hard);
+  border: 1px solid var(--grv-b);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  color: var(--grv-fg3);
+  line-height: 1.7;
+}
+
+.terminal-prompt {
+  color: var(--grv-aqua);
+}
+
+.terminal-ok {
+  color: var(--grv-teal, #4d8870);
+}
+
+.terminal-value {
+  color: var(--grv-fg);
+}
+
+/* ── Particle (hero only) ─────────────────────────────────────── */
+.lab-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--grv-aqua);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@keyframes particleDrift {
+  0%   { transform: translateY(0) translateX(0);             opacity: 0; }
+  8%   { opacity: var(--po, 0.25); }
+  92%  { opacity: calc(var(--po, 0.25) * 0.6); }
+  100% { transform: translateY(-110vh) translateX(var(--pd, 30px)); opacity: 0; }
+}
+
+/* ── Scroll-reveal ────────────────────────────────────────────── */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.anim-fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-d1 { transition-delay: 0.05s; }
+.anim-d2 { transition-delay: 0.12s; }
+.anim-d3 { transition-delay: 0.20s; }
+.anim-d4 { transition-delay: 0.28s; }
+.anim-d5 { transition-delay: 0.36s; }
+.anim-d6 { transition-delay: 0.44s; }
