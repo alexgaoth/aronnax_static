@@ -1,0 +1,12 @@
+# Core
+numpy
+opencv-python
+tqdm
+
+# SAM2 (segmentation). Install torch first (CPU build shown; see README for CUDA).
+# torch / torchvision are pulled in by the sam2 package but pin CPU wheels locally:
+torch
+torchvision
+
+# Segment Anything 2 — install from source (see README); the PyPI name is `SAM-2`.
+# pip install "git+https://github.com/facebookresearch/sam2.git"

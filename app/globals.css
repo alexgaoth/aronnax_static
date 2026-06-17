@@ -137,6 +137,32 @@ body {
   100% { transform: translateY(-110vh) translateX(var(--pd, 30px)); opacity: 0; }
 }
 
+/* ── Demo scrubber ────────────────────────────────────────────── */
+.demo-scrub {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: var(--grv-b);
+  cursor: pointer;
+  outline: none;
+}
+.demo-scrub:disabled { cursor: not-allowed; opacity: 0.5; }
+.demo-scrub::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  background: var(--grv-aqua);
+  border: none;
+}
+.demo-scrub::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  background: var(--grv-aqua);
+  border: none;
+  border-radius: 0;
+}
+
 /* ── Scroll-reveal ────────────────────────────────────────────── */
 .anim-fade-up {
   opacity: 0;
