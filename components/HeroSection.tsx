@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { COMPANY_TAGLINE } from "@/lib/config";
+import { COMPANY_TAGLINE, DEMO_PATH } from "@/lib/config";
 
 export default function HeroSection() {
   const particleRef = useRef<HTMLDivElement>(null);
@@ -40,10 +40,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-grv-hard">
-      {/* Graph-paper grid */}
       <div className="absolute inset-0 lab-grid" aria-hidden="true" />
-
-      {/* Subtle depth gradient */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -52,22 +49,15 @@ export default function HeroSection() {
         }}
         aria-hidden="true"
       />
-
-      {/* Particles */}
       <div ref={particleRef} className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true" />
-
-      {/* Top/bottom fades */}
       <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-grv-hard to-transparent pointer-events-none" aria-hidden="true" />
       <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-grv-hard to-transparent pointer-events-none" aria-hidden="true" />
 
-      {/* ── Content ─────────────────────────────────────────── */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-20 w-full">
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
-
-          {/* Left — headline */}
           <div>
             <div className="mb-7 animate-fade-in" style={{ animationDelay: "0.05s" }}>
-              <span className="section-label">§ Research Lab · San Diego</span>
+              <span className="section-label">Research lab · San Diego</span>
             </div>
 
             <h1
@@ -75,13 +65,13 @@ export default function HeroSection() {
               style={{ fontSize: "clamp(2.4rem, 6vw, 5.2rem)" }}
             >
               <span className="block animate-fade-up" style={{ animationDelay: "0.15s" }}>
-                The Last Frontier
+                Training data
               </span>
               <span className="block text-grv-aqua animate-fade-up" style={{ animationDelay: "0.28s" }}>
-                for Autonomous AI
+                for underwater
               </span>
               <span className="block animate-fade-up" style={{ animationDelay: "0.41s" }}>
-                is Underwater.
+                autonomy
               </span>
             </h1>
 
@@ -89,19 +79,18 @@ export default function HeroSection() {
               className="text-grv-fg2 text-base lg:text-lg max-w-lg mb-8 leading-relaxed animate-fade-up"
               style={{ animationDelay: "0.54s" }}
             >
-              {COMPANY_TAGLINE}. We are building the first real-world
-              Vision-Language-Action dataset for marine autonomous systems.
+              {COMPANY_TAGLINE}. We capture aligned video, sonar, IMU, and pilot control
+              from ROV operations and turn it into training-ready VLA chunks.
             </p>
 
-            {/* Stat row */}
             <div
               className="flex flex-wrap gap-6 mb-10 animate-fade-up"
               style={{ animationDelay: "0.67s" }}
             >
               {[
-                { v: "0",     l: "real-world VLA datasets exist" },
-                { v: "70%",   l: "of Earth’s surface" },
-                { v: "$800M", l: "DoD Replicator budget" },
+                { v: "0", l: "public real-world VLA datasets" },
+                { v: "25h", l: "synthetic data (USIM, industry-wide)" },
+                { v: "4", l: "modalities per timestep" },
               ].map((s) => (
                 <div key={s.v}>
                   <div className="font-mono font-bold text-2xl text-grv-aqua">{s.v}</div>
@@ -112,103 +101,69 @@ export default function HeroSection() {
               ))}
             </div>
 
-            {/* CTAs */}
             <div
               className="flex flex-col sm:flex-row gap-3 animate-fade-up"
               style={{ animationDelay: "0.78s" }}
             >
               <a
-                href="#platform"
+                href={DEMO_PATH}
                 className="px-7 py-3 bg-grv-aqua text-grv-hard text-xs font-mono font-bold tracking-[0.12em] uppercase hover:bg-grv-aqua2 transition-colors duration-200"
               >
-                Explore Research
+                View Demo
               </a>
               <a
-                href="#contact"
+                href="#platform"
                 className="px-7 py-3 border border-grv-b text-grv-fg2 text-xs font-mono font-bold tracking-[0.12em] uppercase hover:border-grv-aqua hover:text-grv-fg transition-colors duration-200"
               >
-                Partner With Us
+                The Problem
               </a>
             </div>
           </div>
 
-          {/* Right — terminal panel */}
           <div
             className="hidden lg:block animate-fade-in"
             style={{ animationDelay: "0.5s" }}
           >
-            <div className="terminal rounded-sm overflow-hidden">
-              {/* Title bar */}
-              <div className="flex items-center gap-2 px-4 py-2.5 border-b border-grv-b bg-grv-base">
-                <span className="w-2.5 h-2.5 rounded-full bg-grv-b2" />
-                <span className="w-2.5 h-2.5 rounded-full bg-grv-b2" />
-                <span className="w-2.5 h-2.5 rounded-full bg-grv-b2" />
-                <span className="font-mono text-[0.65rem] text-grv-fg4 ml-2 tracking-wider">
-                  aronnax — data_capture.sh
-                </span>
+            <a href={DEMO_PATH} className="block group">
+              <div className="terminal rounded-sm overflow-hidden border border-grv-b group-hover:border-grv-aqua transition-colors">
+                <div className="flex items-center gap-2 px-4 py-2.5 border-b border-grv-b bg-grv-base">
+                  <span className="w-2.5 h-2.5 rounded-full bg-grv-b2" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-grv-b2" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-grv-b2" />
+                  <span className="font-mono text-[0.65rem] text-grv-fg4 ml-2 tracking-wider">
+                    pipeline demo · usim_clips.json
+                  </span>
+                </div>
+                <div className="p-5 space-y-1 text-sm">
+                  <p>
+                    <span className="terminal-prompt">$ </span>
+                    <span className="text-grv-fg">underwater_vla build --limit 200</span>
+                  </p>
+                  <p className="pt-1 text-grv-fg4">ingest → align → label → export</p>
+                  <p>
+                    <span className="terminal-prompt">▶ </span>
+                    vision + pwm + imu
+                    {"  "}<span className="terminal-ok">OK</span>
+                  </p>
+                  <p>
+                    <span className="terminal-prompt">▶ </span>
+                    fighting_current labels
+                    {"  "}<span className="terminal-ok">OK</span>
+                  </p>
+                  <p>
+                    <span className="terminal-prompt">▶ </span>
+                    action chunks [k, 6]
+                    {"  "}<span className="terminal-ok">OK</span>
+                  </p>
+                  <div className="border-t border-grv-b my-3" />
+                  <p className="text-grv-fg4">4 USIM clips · synced telemetry · open the explorer →</p>
+                </div>
               </div>
-
-              {/* Terminal body */}
-              <div className="p-5 space-y-1">
-                <p>
-                  <span className="terminal-prompt">$ </span>
-                  <span className="text-grv-fg">aronnax ingest --live --all-streams</span>
-                </p>
-                <p className="pt-1 text-grv-fg4">Connecting to ROV telemetry bus…</p>
-                <p>
-                  <span className="terminal-prompt">▶ </span>
-                  VISION (H.264 1080p)
-                  {"  "}<span className="terminal-ok">OK</span>
-                  {"  "}<span className="terminal-value">23.7 MB/s</span>
-                </p>
-                <p>
-                  <span className="terminal-prompt">▶ </span>
-                  SONAR (Oculus M750d)
-                  {"  "}<span className="terminal-ok">OK</span>
-                  {"  "}<span className="terminal-value">4.2 MB/s</span>
-                </p>
-                <p>
-                  <span className="terminal-prompt">▶ </span>
-                  IMU (SCALED_IMU)
-                  {"     "}<span className="terminal-ok">OK</span>
-                  {"  "}<span className="terminal-value">200 Hz</span>
-                </p>
-                <p>
-                  <span className="terminal-prompt">▶ </span>
-                  RC_IN (joystick)
-                  {"     "}<span className="terminal-ok">OK</span>
-                  {"  "}<span className="terminal-value">50 Hz</span>
-                </p>
-                <div className="border-t border-grv-b my-3" />
-                <p className="text-grv-fg4">Session statistics</p>
-                <p>
-                  <span className="text-grv-fg3 w-28 inline-block">active streams</span>
-                  <span className="terminal-value">847</span>
-                </p>
-                <p>
-                  <span className="text-grv-fg3 w-28 inline-block">hours ingested</span>
-                  <span className="terminal-value">2,341.7</span>
-                </p>
-                <p>
-                  <span className="text-grv-fg3 w-28 inline-block">pilot operators</span>
-                  <span className="terminal-value">23</span>
-                </p>
-                <p>
-                  <span className="text-grv-fg3 w-28 inline-block">VLA tokens</span>
-                  <span className="terminal-value">1.84 B</span>
-                </p>
-                <div className="border-t border-grv-b my-3" />
-                <p>
-                  <span className="terminal-prompt">$ </span>
-                  <span className="animate-cursor-blink text-grv-aqua">▋</span>
-                </p>
-              </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Scroll cue */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
         <div className="w-px h-10 bg-gradient-to-b from-grv-b2 to-transparent" />
         <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-grv-fg4">scroll</span>
