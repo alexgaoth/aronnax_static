@@ -1,7 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-import Viewer, { type AnnotationMap, type UsimClip } from "./viewer";
+import DemoTabs from "./tabs";
+import { type AnnotationMap, type UsimClip } from "./viewer";
 
 export const metadata = {
   title: "Dataset Explorer",
@@ -18,5 +19,5 @@ export default async function DemoPage() {
   const clips = JSON.parse(clipsRaw) as UsimClip[];
   const annotations = JSON.parse(annotationsRaw) as AnnotationMap;
 
-  return <Viewer initialClips={clips} annotations={annotations} />;
+  return <DemoTabs initialClips={clips} annotations={annotations} />;
 }

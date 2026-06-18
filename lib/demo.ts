@@ -65,7 +65,7 @@ export interface PosesData {
 
 // ── Asset paths ──────────────────────────────────────────────────────────────
 export const DEMO_ASSETS = {
-  video: "/demo/raw.mp4",
+  video: "/demo/videos/episode_000000.mp4",
   masks: "/demo/masks.json",
   keypoints: "/demo/keypoints.json",
   poses: "/demo/poses.json",
