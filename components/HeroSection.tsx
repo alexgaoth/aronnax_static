@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { COMPANY_TAGLINE, DEMO_PATH } from "@/lib/config";
+import { Button } from "@/components/ui/button";
 
 const RovViewer = dynamic(() => import("@/components/RovViewer"), { ssr: false });
 
@@ -82,8 +84,8 @@ export default function HeroSection() {
               className="text-grv-fg2 text-base lg:text-lg max-w-lg mb-8 leading-relaxed animate-fade-up"
               style={{ animationDelay: "0.54s" }}
             >
-              {COMPANY_TAGLINE}. We capture aligned video, sonar, IMU, and pilot control
-              from ROV operations and turn it into training-ready VLA chunks.
+              {COMPANY_TAGLINE}. We capture video, sonar, IMU, and control from
+              ROV missions and turn them into training-ready VLA chunks.
             </p>
 
             <div
@@ -108,18 +110,20 @@ export default function HeroSection() {
               className="flex flex-col sm:flex-row gap-3 animate-fade-up"
               style={{ animationDelay: "0.78s" }}
             >
-              <a
-                href={DEMO_PATH}
-                className="px-7 py-3 bg-grv-aqua text-grv-hard text-xs font-mono font-bold tracking-[0.12em] uppercase hover:bg-grv-aqua2 transition-colors duration-200"
+              <Button
+                variant="default"
+                size="lg"
+                render={<Link href={DEMO_PATH} />}
               >
                 View Demo
-              </a>
-              <a
-                href="#platform"
-                className="px-7 py-3 border border-grv-b text-grv-fg2 text-xs font-mono font-bold tracking-[0.12em] uppercase hover:border-grv-aqua hover:text-grv-fg transition-colors duration-200"
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                render={<Link href="#platform" />}
               >
                 The Problem
-              </a>
+              </Button>
             </div>
           </div>
 

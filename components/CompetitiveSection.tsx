@@ -1,4 +1,5 @@
 import ScrollReveal from "@/components/ScrollReveal";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 const notes = [
   {
@@ -11,7 +12,7 @@ const notes = [
   },
   {
     name: "Classical CV stacks",
-    body: "ATR and rule-based obstacle avoidance break on novel debris and zero visibility. Learned policies from pilot data address edge cases rules miss.",
+    body: "Classical CV stacks break on novel debris and zero-visibility conditions. Learned policies from pilot data handle the edge cases rules miss.",
   },
 ];
 
@@ -38,10 +39,16 @@ export default function CompetitiveSection() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {notes.map((item, i) => (
-              <div key={item.name} className={`anim-fade-up anim-d${i + 2} lab-card p-6`}>
-                <h3 className="font-display font-semibold text-grv-fg text-sm mb-3">{item.name}</h3>
-                <p className="text-grv-fg3 text-xs leading-relaxed">{item.body}</p>
-              </div>
+              <Card key={item.name} className={`anim-fade-up anim-d${i + 2}`}>
+                <CardHeader className="pb-1">
+                  <CardTitle className="font-display font-semibold text-grv-fg text-sm">
+                    {item.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-grv-fg3 text-xs leading-relaxed">{item.body}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </ScrollReveal>

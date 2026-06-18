@@ -1,3 +1,5 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -181,3 +183,52 @@ body {
 .anim-d4 { transition-delay: 0.28s; }
 .anim-d5 { transition-delay: 0.36s; }
 .anim-d6 { transition-delay: 0.44s; }
+
+@layer base {
+  .theme {
+    --font-heading: var(--font-space-grotesk);
+    --font-sans: var(--font-inter);
+  }
+  :root,
+  .dark {
+    /* ── Gruvbox Cold Dark → shadcn semantic tokens ── */
+    --background:         #1b2028;
+    --foreground:         #d8cdb8;
+    --card:               #2e3a48;
+    --card-foreground:    #d8cdb8;
+    --popover:            #232b34;
+    --popover-foreground: #d8cdb8;
+    --primary:            #5f9ea8;
+    --primary-foreground: #1b2028;
+    --secondary:          #293240;
+    --secondary-foreground: #d8cdb8;
+    --muted:              #232b34;
+    --muted-foreground:   #8a8480;
+    --accent:             #374554;
+    --accent-foreground:  #d8cdb8;
+    --destructive:        oklch(0.577 0.245 27.325);
+    --border:             #3e4e5e;
+    --input:              #3e4e5e;
+    --ring:               #5f9ea8;
+    --radius:             0px;
+    --sidebar:            #232b34;
+    --sidebar-foreground: #d8cdb8;
+    --sidebar-primary:    #5f9ea8;
+    --sidebar-primary-foreground: #1b2028;
+    --sidebar-accent:     #374554;
+    --sidebar-accent-foreground: #d8cdb8;
+    --sidebar-border:     #3e4e5e;
+    --sidebar-ring:       #5f9ea8;
+  }
+  * {
+    @apply border-border;
+    outline-color: var(--ring);
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+

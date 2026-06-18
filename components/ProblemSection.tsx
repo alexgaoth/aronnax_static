@@ -1,4 +1,15 @@
 import ScrollReveal from "@/components/ScrollReveal";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const stats = [
   {
@@ -14,7 +25,7 @@ const stats = [
   {
     value: "$150K+",
     label: "Typical ROV inspection day rate",
-    sub: "DP vessel + crew makes field data expensive to collect at scale.",
+    sub: "That makes real field data expensive to collect at scale.",
   },
   {
     value: "4",
@@ -77,25 +88,27 @@ export default function ProblemSection() {
           </h2>
 
           <p className="anim-fade-up anim-d3 text-grv-fg2 text-base max-w-2xl mb-14 leading-relaxed">
-            Models trained on land or in simulation struggle underwater. Current, turbidity,
-            and radio blackout change the sensing problem entirely. Without aligned
-            vision-action-telemetry datasets, marine autonomy stays rule-based.
+            Underwater datasets are rare, grounded-only, and usually geo-referenced for mapping,
+            not for policy training. That leaves marine autonomy mostly rule-based.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-16">
             {stats.map((stat, i) => (
-              <div
-                key={stat.value}
-                className={`anim-fade-up anim-d${i + 2} lab-card p-5`}
-              >
-                <div className="font-mono font-bold text-3xl text-grv-aqua mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm font-medium text-grv-fg mb-1.5 leading-snug">
-                  {stat.label}
-                </div>
-                <div className="text-xs text-grv-fg4 leading-relaxed">{stat.sub}</div>
-              </div>
+              <Card key={stat.value} className={`anim-fade-up anim-d${i + 2}`}>
+                <CardHeader className="pb-2">
+                  <div className="font-mono font-bold text-3xl text-grv-aqua mb-1">
+                    {stat.value}
+                  </div>
+                  <CardTitle className="text-sm font-medium text-grv-fg leading-snug">
+                    {stat.label}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-xs text-grv-fg4 leading-relaxed">
+                    {stat.sub}
+                  </CardDescription>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
@@ -103,47 +116,53 @@ export default function ProblemSection() {
             <p className="font-mono text-[0.65rem] tracking-widest uppercase text-grv-fg4 mb-4">
               Underwater datasets today
             </p>
-            <div className="overflow-x-auto border border-grv-b">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="border-b border-grv-b bg-grv-base">
+            <ScrollArea className="border border-grv-b">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-b border-grv-b bg-grv-base hover:bg-grv-base">
                     {["Dataset", "Domain", "Modalities", "Size", "Actions", "Notes"].map((h) => (
-                      <th
+                      <TableHead
                         key={h}
-                        className="text-left px-4 py-3 font-mono text-[0.62rem] tracking-widest uppercase text-grv-fg4"
+                        className="font-mono text-[0.62rem] tracking-widest uppercase text-grv-fg4 h-10"
                       >
                         {h}
-                      </th>
+                      </TableHead>
                     ))}
-                  </tr>
-                </thead>
-                <tbody>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                   {datasetRows.map((row) => (
-                    <tr
+                    <TableRow
                       key={row.name}
                       className={`border-b border-grv-b transition-colors duration-150 ${
-                        row.highlight ? "bg-grv-soft" : "hover:bg-grv-base"
+                        row.highlight ? "bg-grv-soft hover:bg-grv-soft" : "hover:bg-grv-base"
                       }`}
                     >
-                      <td className={`px-4 py-3.5 font-medium ${row.highlight ? "text-grv-aqua" : "text-grv-fg"}`}>
+                      <TableCell className={`font-medium py-3.5 ${row.highlight ? "text-grv-aqua" : "text-grv-fg"}`}>
                         {row.name}
-                      </td>
-                      <td className="px-4 py-3.5 text-grv-fg2">{row.domain}</td>
-                      <td className="px-4 py-3.5 text-grv-fg2 font-mono text-xs">{row.modalities}</td>
-                      <td className="px-4 py-3.5 text-grv-fg2 font-mono text-xs">{row.size}</td>
-                      <td className="px-4 py-3.5 font-mono text-sm">
-                        {row.actions
-                          ? <span className="text-grv-aqua">✓</span>
-                          : <span className="text-grv-fg4">✗</span>}
-                      </td>
-                      <td className={`px-4 py-3.5 text-xs leading-relaxed ${row.highlight ? "text-grv-aqua2" : "text-grv-fg4"}`}>
+                      </TableCell>
+                      <TableCell className="text-grv-fg2 py-3.5">{row.domain}</TableCell>
+                      <TableCell className="text-grv-fg2 font-mono text-xs py-3.5">{row.modalities}</TableCell>
+                      <TableCell className="text-grv-fg2 font-mono text-xs py-3.5">{row.size}</TableCell>
+                      <TableCell className="py-3.5">
+                        {row.actions ? (
+                          <Badge variant="outline" className="border-grv-aqua text-grv-aqua font-mono text-xs">
+                            ✓
+                          </Badge>
+                        ) : (
+                          <Badge variant="outline" className="border-grv-b text-grv-fg4 font-mono text-xs">
+                            ✗
+                          </Badge>
+                        )}
+                      </TableCell>
+                      <TableCell className={`text-xs leading-relaxed py-3.5 ${row.highlight ? "text-grv-aqua2" : "text-grv-fg4"}`}>
                         {row.limit}
-                      </td>
-                    </tr>
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
-            </div>
+                </TableBody>
+              </Table>
+            </ScrollArea>
           </div>
         </ScrollReveal>
       </div>

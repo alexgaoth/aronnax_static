@@ -1,4 +1,9 @@
+"use client";
+
 import ScrollReveal from "@/components/ScrollReveal";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
 const pillars = [
   {
@@ -7,13 +12,23 @@ const pillars = [
     subtitle: "Smooth control sequences",
     body: "Rather than one thruster command per frame, the pipeline exports ACT-style chunks of future actions with exponential smoothing — fixed [k, 6] tensors ready for imitation learning.",
     tags: ["ACT", "Chunking", "Imitation learning"],
+    tooltips: {
+      ACT: "Action Chunking with Transformers — predicts k future actions at once",
+      Chunking: "Groups consecutive commands into fixed-length temporal windows",
+      "Imitation learning": "Policy trained from expert pilot demonstrations",
+    },
   },
   {
     id: "II",
     title: "Cross-modal sonar",
     subtitle: "Vision when you have it, sonar when you do not",
-    body: "Camera frames pair with forward-looking sonar masks in a shared timeline. When optical visibility drops, the same row structure carries sonar frames and detection boxes through export.",
+    body: "Camera frames pair with forward-looking sonar masks in a shared timeline. When optical visibility drops, the same row structure carries sonar frames through export.",
     tags: ["FLS sonar", "Multimodal", "Alignment"],
+    tooltips: {
+      "FLS sonar": "Forward-Looking Sonar — acoustic imaging for zero-visibility conditions",
+      Multimodal: "Unified embedding space for camera and sonar inputs",
+      Alignment: "Sub-millisecond timestamp sync across all sensor streams",
+    },
   },
   {
     id: "III",
@@ -21,6 +36,11 @@ const pillars = [
     subtitle: "No human annotator for hydrodynamics",
     body: "When a pilot commands forward thrust but IMU acceleration stays near zero, the pipeline tags fighting_current — a subjective pilot reaction turned into an objective training token from RC_IN vs SCALED_IMU.",
     tags: ["IMU", "Hydrodynamics", "Auto-label"],
+    tooltips: {
+      IMU: "Inertial Measurement Unit — acceleration and angular rate sensor",
+      Hydrodynamics: "Fluid-body interaction modeled from RC_IN vs SCALED_IMU delta",
+      "Auto-label": "fighting_current, station_keeping, etc. derived without annotation",
+    },
   },
 ];
 
@@ -49,34 +69,49 @@ export default function TechnologySection() {
               <span className="text-grv-aqua">export</span>
             </h2>
             <p className="anim-fade-up anim-d3 text-grv-fg3 text-sm max-w-xs mt-4 lg:mt-0 leading-relaxed">
-              Four stages turn raw ROV streams into training-ready chunks. Live demo runs on USIM today.
+              Turns raw ROV streams into training-ready chunks. Live demo runs on USIM today.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
             {pillars.map((p, i) => (
-              <div
-                key={p.id}
-                className={`anim-fade-up anim-d${i + 2} lab-card p-7 flex flex-col`}
-              >
-                <div className="flex items-baseline gap-3 mb-4">
-                  <span className="font-mono text-[0.65rem] text-grv-fg4 tracking-widest">{p.id}</span>
-                  <div>
-                    <h3 className="font-display font-semibold text-grv-fg text-base leading-snug">{p.title}</h3>
-                    <p className="font-mono text-[0.62rem] tracking-wide uppercase text-grv-aqua mt-0.5">{p.subtitle}</p>
-                  </div>
-                </div>
-
-                <p className="text-grv-fg2 text-sm leading-relaxed mb-5 flex-1">{p.body}</p>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {p.tags.map((t) => (
-                    <span key={t} className="font-mono text-[0.58rem] tracking-widest uppercase px-2 py-0.5 border border-grv-b text-grv-fg4">
-                      {t}
+              <Card key={p.id} className={`anim-fade-up anim-d${i + 2} flex flex-col`}>
+                <CardHeader className="pb-2">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-[0.65rem] text-grv-fg4 tracking-widest flex-shrink-0">
+                      {p.id}
                     </span>
-                  ))}
-                </div>
-              </div>
+                    <div>
+                      <CardTitle className="font-display font-semibold text-grv-fg text-base leading-snug">
+                        {p.title}
+                      </CardTitle>
+                      <p className="font-mono text-[0.62rem] tracking-wide uppercase text-grv-aqua mt-0.5">
+                        {p.subtitle}
+                      </p>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-4 flex-1">
+                  <p className="text-grv-fg2 text-sm leading-relaxed flex-1">{p.body}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.tags.map((t) => (
+                      <Tooltip key={t}>
+                        <TooltipTrigger>
+                          <Badge
+                            variant="outline"
+                            className="font-mono text-[0.58rem] tracking-widest uppercase border-grv-b text-grv-fg4 h-auto py-0.5 px-2 cursor-default hover:border-grv-aqua hover:text-grv-aqua transition-colors"
+                          >
+                            {t}
+                          </Badge>
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-[200px] text-center bg-grv-card border border-grv-b text-grv-fg2">
+                          {p.tooltips[t as keyof typeof p.tooltips]}
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
@@ -91,12 +126,13 @@ export default function TechnologySection() {
             </div>
             <div className="mt-6 lg:mt-0 flex flex-wrap gap-2">
               {pipelineStages.map((stage) => (
-                <span
+                <Badge
                   key={stage}
-                  className="font-mono text-[0.58rem] tracking-widest uppercase px-2.5 py-1 border border-grv-b text-grv-fg3"
+                  variant="outline"
+                  className="font-mono text-[0.58rem] tracking-widest uppercase border-grv-b text-grv-fg3 h-auto py-1 px-2.5"
                 >
                   {stage}
-                </span>
+                </Badge>
               ))}
             </div>
           </div>

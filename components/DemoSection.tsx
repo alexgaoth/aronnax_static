@@ -19,8 +19,7 @@ export default function DemoSection() {
               <span className="text-grv-aqua">real footage</span>
             </h2>
             <p className="anim-fade-up anim-d3 text-grv-fg3 text-sm max-w-xs mt-4 lg:mt-0 leading-relaxed">
-              Raw stream, SAM2 segmentation, ORB features, and 3D trajectory —
-              one shared clock drives all four views.
+              Raw stream, SAM2 segmentation, ORB features, and 3D trajectory — one clock.
             </p>
           </div>
         </ScrollReveal>

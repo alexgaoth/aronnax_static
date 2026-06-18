@@ -1,5 +1,8 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import { COMPANY_NAME } from "@/lib/config";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 const audiences = [
   {
@@ -10,7 +13,7 @@ const audiences = [
   {
     id: "B",
     label: "Offshore operators",
-    desc: "Inspection and IRM contractors looking to reduce vessel days and pilot load.",
+    desc: "Inspection and IRM contractors looking to cut vessel days and pilot load.",
   },
   {
     id: "C",
@@ -20,7 +23,7 @@ const audiences = [
   {
     id: "D",
     label: "Research labs",
-    desc: "Oceanographic and marine robotics groups benchmarking underwater policies.",
+    desc: "Marine and oceanographic groups benchmarking underwater autonomy, not just mapping.",
   },
 ];
 
@@ -43,25 +46,30 @@ export default function ContactSection() {
                 <span className="text-grv-aqua">{COMPANY_NAME}</span>
               </h2>
               <p className="anim-fade-up anim-d3 text-grv-fg2 text-base leading-relaxed mb-10">
-                We are incubating at UC San Diego with Scripps Institution of
-                Oceanography. Reach out for pilot partnerships, data access, or research
-                collaboration.
+                UC San Diego / Scripps Institution of Oceanography. Open for pilot
+                partnerships and data access.
               </p>
 
-              <div className="space-y-3">
+              <div className="flex flex-col gap-2">
                 {audiences.map((a, i) => (
-                  <div
+                  <Card
                     key={a.id}
-                    className={`anim-fade-up anim-d${i + 2} lab-card p-5 flex gap-4 items-start`}
+                    className={`anim-fade-up anim-d${i + 2}`}
                   >
-                    <span className="font-mono text-[0.62rem] text-grv-fg4 tracking-widest pt-0.5 flex-shrink-0">
-                      {a.id}
-                    </span>
-                    <div>
-                      <h3 className="font-display font-semibold text-grv-fg text-sm mb-1">{a.label}</h3>
-                      <p className="text-grv-fg3 text-xs leading-relaxed">{a.desc}</p>
-                    </div>
-                  </div>
+                    <CardHeader className="pb-1">
+                      <div className="flex items-baseline gap-4">
+                        <span className="font-mono text-[0.62rem] text-grv-fg4 tracking-widest flex-shrink-0">
+                          {a.id}
+                        </span>
+                        <CardTitle className="font-display font-semibold text-grv-fg text-sm">
+                          {a.label}
+                        </CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-grv-fg3 text-xs leading-relaxed pl-7">{a.desc}</p>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
@@ -72,20 +80,19 @@ export default function ContactSection() {
                   {COMPANY_NAME} · UCSD Scripps
                 </p>
 
-                <a
-                  href="mailto:contact@aronnaxlab.ai"
-                  className="block w-full text-center px-8 py-3.5 bg-grv-aqua text-grv-hard text-xs font-mono font-bold tracking-[0.12em] uppercase hover:bg-grv-aqua2 transition-colors duration-200 mb-4"
+                <Button
+                  variant="default"
+                  size="lg"
+                  className="w-full mb-4"
+                  render={<a href="mailto:contact@aronnaxlab.ai" />}
                 >
                   contact@aronnaxlab.ai
-                </a>
+                </Button>
 
-                <div className="lab-hr mt-8 mb-6" />
+                <Separator className="my-6" />
 
-                <div className="space-y-2.5">
-                  {[
-                    ["Location", "La Jolla, CA"],
-                    ["Stage", "Seed · data collection"],
-                  ].map(([k, v]) => (
+                <div className="flex flex-col gap-2.5">
+                  {[["Location", "La Jolla, CA"]].map(([k, v]) => (
                     <div key={k} className="grid grid-cols-[90px_1fr] gap-2 text-xs">
                       <span className="font-mono text-grv-fg4">{k}</span>
                       <span className="text-grv-fg2">{v}</span>

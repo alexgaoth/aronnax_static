@@ -2,7 +2,19 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { MenuIcon } from "lucide-react";
 import { COMPANY_NAME, DEMO_PATH } from "@/lib/config";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "Problem", href: "/#platform" },
@@ -13,7 +25,6 @@ const navLinks = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -23,11 +34,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
           ? "bg-grv-hard/95 backdrop-blur-sm border-b border-grv-b"
           : "bg-transparent"
-      }`}
+      )}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-14 lg:h-16">
         <Link href="/" className="flex items-center gap-2.5 group" aria-label={COMPANY_NAME}>
@@ -51,65 +63,97 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
-          <Link
-            href={DEMO_PATH}
-            className="px-5 py-2 text-[0.65rem] font-mono font-bold tracking-[0.14em] uppercase bg-grv-aqua text-grv-hard hover:bg-grv-aqua2 transition-colors duration-200"
+        <div className="hidden md:flex items-center gap-2">
+          <Button
+            variant="default"
+            size="sm"
+            render={<Link href={DEMO_PATH} />}
           >
             View Demo
-          </Link>
-          <Link
-            href="/#contact"
-            className="px-5 py-2 text-[0.65rem] font-mono font-bold tracking-[0.14em] uppercase border border-grv-b text-grv-fg2 hover:border-grv-aqua hover:text-grv-fg transition-colors duration-200"
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            render={<Link href="/#contact" />}
           >
             Contact
-          </Link>
+          </Button>
         </div>
 
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-        >
-          <span className={`block w-5 h-px bg-grv-fg3 transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
-          <span className={`block w-5 h-px bg-grv-fg3 transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-px bg-grv-fg3 transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
-        </button>
+        {/* Mobile nav — Sheet slide-in */}
+        <Sheet>
+          <SheetTrigger
+            render={
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden text-grv-fg3 hover:text-grv-fg hover:bg-grv-soft"
+                aria-label="Open menu"
+              />
+            }
+          >
+            <MenuIcon />
+          </SheetTrigger>
+
+          <SheetContent
+            side="right"
+            className="w-72 border-l border-grv-b bg-grv-base p-0"
+            showCloseButton={false}
+          >
+            <SheetHeader className="px-6 pt-6 pb-4">
+              <div className="flex items-center justify-between">
+                <SheetTitle className="flex items-center gap-2 font-display font-bold text-grv-fg text-base">
+                  <span className="font-mono text-[10px] text-grv-aqua tracking-widest opacity-60">§</span>
+                  {COMPANY_NAME}
+                </SheetTitle>
+                <SheetClose
+                  render={
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      className="text-grv-fg3 hover:text-grv-fg hover:bg-grv-soft"
+                    />
+                  }
+                >
+                  <span aria-hidden>✕</span>
+                  <span className="sr-only">Close</span>
+                </SheetClose>
+              </div>
+            </SheetHeader>
+
+            <Separator />
+
+            <nav className="px-6 py-5 flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <SheetClose
+                  key={link.href}
+                  render={<Link href={link.href} />}
+                  className="font-mono text-[0.7rem] tracking-widest uppercase text-grv-fg3 hover:text-grv-fg transition-colors py-2.5 border-b border-grv-b/40 last:border-0"
+                >
+                  {link.label}
+                </SheetClose>
+              ))}
+            </nav>
+
+            <div className="px-6 py-4 flex flex-col gap-2 mt-auto border-t border-grv-b">
+              <Button
+                variant="default"
+                className="w-full"
+                render={<Link href={DEMO_PATH} />}
+              >
+                View Demo
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full"
+                render={<Link href="/#contact" />}
+              >
+                Contact
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
       </nav>
-
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          menuOpen ? "max-h-80" : "max-h-0"
-        } bg-grv-base border-b border-grv-b`}
-      >
-        <div className="px-6 py-5 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="font-mono text-[0.7rem] tracking-widest uppercase text-grv-fg3 hover:text-grv-fg transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href={DEMO_PATH}
-            onClick={() => setMenuOpen(false)}
-            className="mt-1 px-5 py-2.5 text-[0.65rem] font-mono font-bold tracking-[0.14em] uppercase bg-grv-aqua text-grv-hard text-center hover:bg-grv-aqua2 transition-colors duration-200"
-          >
-            View Demo
-          </Link>
-          <Link
-            href="/#contact"
-            onClick={() => setMenuOpen(false)}
-            className="px-5 py-2.5 text-[0.65rem] font-mono font-bold tracking-[0.14em] uppercase border border-grv-b text-grv-fg2 text-center hover:border-grv-aqua hover:text-grv-fg transition-colors duration-200"
-          >
-            Contact
-          </Link>
-        </div>
-      </div>
     </header>
   );
 }

@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Geist } from "next/font/google";
 import "./globals.css";
 import { COMPANY_NAME, COMPANY_DESCRIPTION } from "@/lib/config";
+import { cn } from "@/lib/utils";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -54,9 +58,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={cn(inter.variable, spaceGrotesk.variable, "font-sans", geist.variable, "dark")}>
       <body className="font-sans bg-grv-hard text-grv-fg antialiased">
-        {children}
+        <TooltipProvider delay={300}>{children}</TooltipProvider>
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
-import { COMPANY_NAME, DEMO_PATH } from "@/lib/config";
+import { COMPANY_TAGLINE, COMPANY_NAME, DEMO_PATH } from "@/lib/config";
+import { Separator } from "@/components/ui/separator";
 
 const footerLinks = [
   { label: "The gap", href: "#platform" },
@@ -17,13 +18,15 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 mb-12">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="font-mono text-[10px] text-grv-aqua tracking-widest opacity-60">§</span>
+              <span className="font-mono text-[10px] text-grv-aqua tracking-widest opacity-60">
+                §
+              </span>
               <span className="font-display font-bold text-base text-grv-fg tracking-tight">
                 {COMPANY_NAME}
               </span>
             </div>
             <p className="text-grv-fg4 text-xs leading-relaxed max-w-xs">
-              Real-world training data for underwater autonomy. UCSD Scripps.
+              {COMPANY_TAGLINE}
             </p>
           </div>
 
@@ -40,7 +43,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="lab-hr mb-5" />
+        <Separator className="mb-5" />
         <p className="font-mono text-[0.62rem] text-grv-fg4">
           © {year} {COMPANY_NAME}. La Jolla, CA.
         </p>
