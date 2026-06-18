@@ -30,13 +30,17 @@ export default function FeatureCanvas({ videoRef, keypoints }: Props) {
       }
 
       if (video.readyState >= 2 && canvas.width) {
+        // Desaturate the footage so the (colored) features pop against the
+        // otherwise-blue water instead of blending in.
+        ctx.filter = "grayscale(1)";
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        ctx.filter = "none";
 
         if (keypoints && keypoints.frames.length) {
           const idx = nearestFrameIndex(keypoints.frames, video.currentTime);
           const pts = keypoints.frames[idx].pts;
           const r = Math.max(2.5, canvas.width / 360);
-          ctx.strokeStyle = "#78b4c0";
+          ctx.strokeStyle = "#f6bd3b"; // bright amber — high contrast on grayscale
           ctx.lineWidth = Math.max(1, canvas.width / 1100);
           ctx.beginPath();
           for (const [x, y] of pts) {

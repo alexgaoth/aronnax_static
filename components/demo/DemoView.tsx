@@ -65,16 +65,23 @@ export default function DemoView() {
     const v = videoRef.current;
     if (!v) return;
     const onTime = () => setCurrent(v.currentTime);
-    const onMeta = () => setDuration(v.duration);
+    const onMeta = () => setDuration(isFinite(v.duration) ? v.duration : 0);
     const onPlay = () => setPlaying(true);
     const onPause = () => setPlaying(false);
     v.addEventListener("timeupdate", onTime);
     v.addEventListener("loadedmetadata", onMeta);
+    v.addEventListener("durationchange", onMeta);
     v.addEventListener("play", onPlay);
     v.addEventListener("pause", onPause);
+    // Catch metadata that loaded before this listener was attached (fast local files).
+    if (v.readyState >= 1) {
+      onMeta();
+      onTime();
+    }
     return () => {
       v.removeEventListener("timeupdate", onTime);
       v.removeEventListener("loadedmetadata", onMeta);
+      v.removeEventListener("durationchange", onMeta);
       v.removeEventListener("play", onPlay);
       v.removeEventListener("pause", onPause);
     };
