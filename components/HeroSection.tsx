@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { COMPANY_TAGLINE, DEMO_PATH } from "@/lib/config";
+
+const RovViewer = dynamic(() => import("@/components/RovViewer"), { ssr: false });
 
 export default function HeroSection() {
   const particleRef = useRef<HTMLDivElement>(null);
@@ -54,7 +57,7 @@ export default function HeroSection() {
       <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-grv-hard to-transparent pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-20 w-full">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+        <div className="lg:grid lg:gap-8 lg:items-start" style={{ gridTemplateColumns: "1fr 1.6fr" }}>
           <div>
             <div className="mb-7 animate-fade-in" style={{ animationDelay: "0.05s" }}>
               <span className="section-label">Research lab · San Diego</span>
@@ -121,45 +124,10 @@ export default function HeroSection() {
           </div>
 
           <div
-            className="hidden lg:block animate-fade-in"
-            style={{ animationDelay: "0.5s" }}
+            className="hidden lg:flex animate-fade-in items-center justify-center"
+            style={{ animationDelay: "0.5s", height: "70vh", minHeight: "520px", maxHeight: "800px" }}
           >
-            <a href={DEMO_PATH} className="block group">
-              <div className="terminal rounded-sm overflow-hidden border border-grv-b group-hover:border-grv-aqua transition-colors">
-                <div className="flex items-center gap-2 px-4 py-2.5 border-b border-grv-b bg-grv-base">
-                  <span className="w-2.5 h-2.5 rounded-full bg-grv-b2" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-grv-b2" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-grv-b2" />
-                  <span className="font-mono text-[0.65rem] text-grv-fg4 ml-2 tracking-wider">
-                    pipeline demo · usim_clips.json
-                  </span>
-                </div>
-                <div className="p-5 space-y-1 text-sm">
-                  <p>
-                    <span className="terminal-prompt">$ </span>
-                    <span className="text-grv-fg">underwater_vla build --limit 200</span>
-                  </p>
-                  <p className="pt-1 text-grv-fg4">ingest → align → label → export</p>
-                  <p>
-                    <span className="terminal-prompt">▶ </span>
-                    vision + pwm + imu
-                    {"  "}<span className="terminal-ok">OK</span>
-                  </p>
-                  <p>
-                    <span className="terminal-prompt">▶ </span>
-                    fighting_current labels
-                    {"  "}<span className="terminal-ok">OK</span>
-                  </p>
-                  <p>
-                    <span className="terminal-prompt">▶ </span>
-                    action chunks [k, 6]
-                    {"  "}<span className="terminal-ok">OK</span>
-                  </p>
-                  <div className="border-t border-grv-b my-3" />
-                  <p className="text-grv-fg4">4 USIM clips · synced telemetry · open the explorer →</p>
-                </div>
-              </div>
-            </a>
+            <RovViewer />
           </div>
         </div>
       </div>
