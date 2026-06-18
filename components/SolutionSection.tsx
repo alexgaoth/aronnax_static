@@ -28,7 +28,7 @@ export default function SolutionSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
           <div className="anim-fade-up anim-d1 mb-7">
-            <span className="section-label">02 · Approach</span>
+            <span className="section-label">03 · Approach</span>
           </div>
 
           <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-start">
@@ -55,7 +55,7 @@ export default function SolutionSection() {
                 href={DEMO_PATH}
                 className="anim-fade-up anim-d5 inline-block px-7 py-3 bg-grv-aqua text-grv-hard text-xs font-mono font-bold tracking-[0.12em] uppercase hover:bg-grv-aqua2 transition-colors duration-200"
               >
-                Open dataset explorer
+                View SLAM replay
               </a>
             </div>
 

@@ -114,6 +114,7 @@ export default function DemoView() {
             playsInline
             muted
             loop
+            autoPlay
             preload="auto"
           />
         </Quadrant>

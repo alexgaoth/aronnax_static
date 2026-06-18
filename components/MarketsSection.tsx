@@ -24,7 +24,7 @@ export default function MarketsSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
           <div className="anim-fade-up anim-d1 mb-7">
-            <span className="section-label">04 · Applications</span>
+            <span className="section-label">05 · Applications</span>
           </div>
 
           <h2

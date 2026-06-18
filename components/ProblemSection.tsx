@@ -65,7 +65,7 @@ export default function ProblemSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
           <div className="anim-fade-up anim-d1 mb-7">
-            <span className="section-label">01 · The gap</span>
+            <span className="section-label">02 · The gap</span>
           </div>
 
           <h2

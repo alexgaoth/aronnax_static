@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Problem", href: "/#platform" },
   { label: "Approach", href: "/#approach" },
   { label: "Pipeline", href: "/#technology" },
-  { label: "Demo", href: DEMO_PATH, newTab: true },
+  { label: "Demo", href: DEMO_PATH },
 ];
 
 export default function Navbar() {
@@ -44,8 +44,6 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              target={link.newTab ? "_blank" : undefined}
-              rel={link.newTab ? "noreferrer" : undefined}
               className="font-mono text-[0.7rem] tracking-widest uppercase text-grv-fg3 hover:text-grv-fg transition-colors duration-150"
             >
               {link.label}
@@ -56,8 +54,6 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <Link
             href={DEMO_PATH}
-            target="_blank"
-            rel="noreferrer"
             className="px-5 py-2 text-[0.65rem] font-mono font-bold tracking-[0.14em] uppercase bg-grv-aqua text-grv-hard hover:bg-grv-aqua2 transition-colors duration-200"
           >
             View Demo
@@ -92,8 +88,6 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              target={link.newTab ? "_blank" : undefined}
-              rel={link.newTab ? "noreferrer" : undefined}
               onClick={() => setMenuOpen(false)}
               className="font-mono text-[0.7rem] tracking-widest uppercase text-grv-fg3 hover:text-grv-fg transition-colors"
             >
@@ -102,8 +96,6 @@ export default function Navbar() {
           ))}
           <Link
             href={DEMO_PATH}
-            target="_blank"
-            rel="noreferrer"
             onClick={() => setMenuOpen(false)}
             className="mt-1 px-5 py-2.5 text-[0.65rem] font-mono font-bold tracking-[0.14em] uppercase bg-grv-aqua text-grv-hard text-center hover:bg-grv-aqua2 transition-colors duration-200"
           >

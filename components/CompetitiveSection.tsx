@@ -21,7 +21,7 @@ export default function CompetitiveSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
           <div className="anim-fade-up anim-d1 mb-7">
-            <span className="section-label">05 · Position</span>
+            <span className="section-label">06 · Position</span>
           </div>
 
           <h2

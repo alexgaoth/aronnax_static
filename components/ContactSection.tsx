@@ -30,7 +30,7 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
           <div className="anim-fade-up anim-d1 mb-7">
-            <span className="section-label">06 · Contact</span>
+            <span className="section-label">07 · Contact</span>
           </div>
 
           <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-start">

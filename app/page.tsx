@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import SolutionSection from "@/components/SolutionSection";
 import TechnologySection from "@/components/TechnologySection";
+import DemoSection from "@/components/DemoSection";
 import MarketsSection from "@/components/MarketsSection";
 import CompetitiveSection from "@/components/CompetitiveSection";
 import ContactSection from "@/components/ContactSection";
@@ -14,6 +15,7 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
+        <DemoSection />
         <ProblemSection />
         <SolutionSection />
         <TechnologySection />
