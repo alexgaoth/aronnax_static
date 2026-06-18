@@ -24,7 +24,8 @@ DEFAULT_VIDEO = os.path.join(DEMO_DIR, "raw.mp4")
 # native fps; overlays just snap to the nearest sampled frame.
 DEFAULT_SAMPLE_FPS = 5.0
 
-# grv accent palette (matches tailwind.config.ts) used to color seg instances.
+# Instance colors. The first six are the grv accents (matches tailwind.config.ts);
+# the rest extend the set with distinct hues so high --max-objects runs stay legible.
 GRV_PALETTE = [
     "#5f9ea8",  # aqua
     "#78b4c0",  # aqua2
@@ -32,6 +33,9 @@ GRV_PALETTE = [
     "#4d8870",  # teal
     "#c89a3c",  # amber
     "#b8b0a0",  # fg2
+    "#a8dadc", "#e07a5f", "#81b29a", "#f2cc8f",
+    "#9d8df1", "#e9c46a", "#2a9d8f", "#e76f51",
+    "#8ecae6", "#ffb4a2", "#bdb2ff", "#90be6d",
 ]
 
 

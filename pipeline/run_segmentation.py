@@ -52,6 +52,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Promptless per-frame masks (no temporal tracking).",
     )
+    p.add_argument(
+        "--low-vram",
+        action="store_true",
+        help="Offload the video predictor's frame/state cache to CPU RAM. "
+        "Slower, but lets high --sample-fps / many frames fit on smaller GPUs.",
+    )
     return p.parse_args()
 
 
@@ -93,7 +99,11 @@ def run_tracked(args, meta, times: list[float], frames_dir: str) -> dict:
     predictor = build_sam2_video_predictor(
         args.model_cfg, args.checkpoint, device=args.device
     )
-    state = predictor.init_state(video_path=frames_dir)
+    state = predictor.init_state(
+        video_path=frames_dir,
+        offload_video_to_cpu=args.low_vram,
+        offload_state_to_cpu=args.low_vram,
+    )
     for obj_id, (px, py) in enumerate(prompts):
         predictor.add_new_points_or_box(
             inference_state=state,

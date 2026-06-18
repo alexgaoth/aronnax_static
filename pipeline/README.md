@@ -62,7 +62,13 @@ All outputs land in `../public/demo/`. Re-run `npm run dev` and open `/demo`.
   nearest sampled frame.
 - `run_slam.py --focal-frac` — nominal focal length as a fraction of width; only
   affects 3D shape, not the synced playback.
-- `run_segmentation.py --max-objects` — how many instances to track/color.
+- `run_segmentation.py --max-objects` — how many instances to track/color (the
+  palette has 18 distinct colors).
+- `run_segmentation.py --low-vram` — offloads the SAM2 video cache to CPU RAM so
+  high `--sample-fps` / long clips fit on smaller GPUs (slower, less GPU memory).
+
+For a maxed-out GPU run (large model, every frame, max objects), use
+`colab_demo.ipynb` — it auto-detects the native fps and runs at full settings.
 
 ## Google Colab fallback (GPU)
 
