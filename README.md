@@ -12,6 +12,20 @@ npm run dev
 
 Open `/demo` for the migrated dataset explorer.
 
+## Deploy to Cloudflare Pages
+
+Build command:
+
+```bash
+npm run build:cloudflare
+```
+
+Build output directory:
+
+```bash
+out
+```
+
 ## Rebuild demo data
 
 ```bash
