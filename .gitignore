@@ -33,3 +33,13 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Demo — large raw video (provide locally / via the pipeline)
+/public/demo/*.mp4
+
+# Pipeline — Python env + model checkpoints
+/pipeline/.venv
+/pipeline/.venv-rocm
+/pipeline/checkpoints
+/checkpoints
+__pycache__/

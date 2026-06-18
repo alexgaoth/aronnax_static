@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { COMPANY_NAME } from "@/lib/config";
 
 const navLinks = [
-  { label: "Research",   href: "#platform" },
-  { label: "Technology", href: "#technology" },
-  { label: "Markets",    href: "#markets" },
-  { label: "Lab",        href: "#company" },
+  { label: "Research",   href: "/#platform" },
+  { label: "Technology", href: "/#technology" },
+  { label: "Markets",    href: "/#markets" },
+  { label: "Lab",        href: "/#company" },
+  { label: "Demo",       href: "/demo" },
 ];
 
 export default function Navbar() {
@@ -30,36 +32,36 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-14 lg:h-16">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group" aria-label={COMPANY_NAME}>
+        <Link href="/" className="flex items-center gap-2.5 group" aria-label={COMPANY_NAME}>
           <span className="font-mono text-[10px] text-grv-aqua tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">
             §
           </span>
           <span className="font-display font-bold text-base tracking-tight text-grv-fg group-hover:text-white transition-colors">
             {COMPANY_NAME}
           </span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="font-mono text-[0.7rem] tracking-widest uppercase text-grv-fg3 hover:text-grv-fg transition-colors duration-150"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* CTA */}
         <div className="hidden md:block">
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="px-5 py-2 text-[0.65rem] font-mono font-bold tracking-[0.14em] uppercase border border-grv-b text-grv-fg2 hover:border-grv-aqua hover:text-grv-fg transition-colors duration-200"
           >
             Partner With Us
-          </a>
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -83,22 +85,22 @@ export default function Navbar() {
       >
         <div className="px-6 py-5 flex flex-col gap-4">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
               className="font-mono text-[0.7rem] tracking-widest uppercase text-grv-fg3 hover:text-grv-fg transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             onClick={() => setMenuOpen(false)}
             className="mt-1 px-5 py-2.5 text-[0.65rem] font-mono font-bold tracking-[0.14em] uppercase border border-grv-b text-grv-fg2 text-center hover:border-grv-aqua hover:text-grv-fg transition-colors duration-200"
           >
             Partner With Us
-          </a>
+          </Link>
         </div>
       </div>
     </header>
