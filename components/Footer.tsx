@@ -4,7 +4,7 @@ const footerLinks: Record<string, string[]> = {
   Research:   ["Overview", "Data Moat", "Methodology", "Annotation Pipeline"],
   Technology: ["VLA Model", "ACT Policy", "Sonar Fusion", "Hydrodynamics"],
   Markets:    ["Defense", "Offshore Wind", "Oil & Gas", "Oceanography"],
-  Lab:        ["About", "Team", "StartBlue / UCSD", "Bow Capital"],
+  Lab:        ["About", "Team", "UCSD"],
 };
 
 export default function Footer() {
@@ -23,7 +23,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-grv-fg4 text-xs leading-relaxed max-w-[180px] font-mono">
-              Marine autonomy foundation model. UCSD StartBlue · Bow Capital.
+              Marine autonomy foundation model. UCSD Scripps.
             </p>
             <div className="mt-5 flex gap-2">
               {["in", "𝕏"].map((s, i) => (
@@ -63,7 +63,7 @@ export default function Footer() {
           <p>© {year} {COMPANY_NAME}. La Jolla, CA.</p>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-grv-aqua animate-glow-soft" />
-            <span>Incubated at StartBlue × UC San Diego Scripps Institution of Oceanography</span>
+            <span>UC San Diego Scripps Institution of Oceanography</span>
           </div>
         </div>
       </div>

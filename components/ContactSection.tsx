@@ -72,13 +72,12 @@ export default function ContactSection() {
             <div className="anim-fade-up anim-d3 mt-12 lg:mt-0">
               <div className="border border-grv-b bg-grv-hard p-8">
                 <p className="font-mono text-[0.62rem] tracking-widest uppercase text-grv-fg4 mb-5">
-                  {COMPANY_NAME} · Incubated at StartBlue × UCSD Scripps
+                  {COMPANY_NAME} · UCSD Scripps
                 </p>
 
                 <p className="text-grv-fg2 text-sm leading-relaxed mb-8">
-                  Currently incubating within the UC San Diego StartBlue Ocean Enterprise
-                  Accelerator in partnership with the Scripps Institution of Oceanography.
-                  Supported by Bow Capital and NOAA&apos;s Ocean Enterprise Initiative.
+                  Currently in partnership with the Scripps Institution of Oceanography.
+                  Supported by NOAA&apos;s Ocean Enterprise Initiative.
                 </p>
 
                 <a
@@ -98,7 +97,6 @@ export default function ContactSection() {
                 <div className="space-y-2.5">
                   {[
                     ["Location",    "La Jolla, CA · Scripps Hydraulics Lab"],
-                    ["Program",     "StartBlue x UCSD · Bow Capital"],
                     ["Stage",       "Seed · Data bounty phase"],
                     ["Funding",     "NOAA Ocean Enterprise Initiative"],
                   ].map(([k, v]) => (
