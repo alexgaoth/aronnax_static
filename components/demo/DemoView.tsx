@@ -22,7 +22,7 @@ function fmt(t: number): string {
   return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
-export default function DemoView() {
+export default function DemoView({ embedded = false }: { embedded?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const [state, setState] = useState<LoadState>("loading");
@@ -102,7 +102,7 @@ export default function DemoView() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className={embedded ? undefined : "max-w-7xl mx-auto px-6 lg:px-12"}>
       {/* Four-quadrant grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Quadrant id="01" label="Raw Stream">

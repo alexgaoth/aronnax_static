@@ -10,7 +10,7 @@ npm install
 npm run dev
 ```
 
-Open `/demo` for the migrated dataset explorer.
+Open `/demo` for the interactive replays — SLAM on real footage and the USIM data pipeline from HuggingFace.
 
 ## Deploy to Cloudflare Pages
 

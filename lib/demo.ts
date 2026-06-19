@@ -63,6 +63,44 @@ export interface PosesData {
   frames: PoseFrame[];
 }
 
+// ── USIM pipeline (usim_clips.json) ──────────────────────────────────────────
+export interface UsimFrame {
+  frameIndex: number;
+  timestamp: number;
+  task: string;
+  jointPos: number[];
+  statePwm: number[];
+  dvlVelocity: number[];
+  imuAngularVelocity: number[];
+  imuLinearAcceleration: number[];
+  pressure: number;
+  dvlAltitude: number;
+  actionPwm: number[];
+}
+
+export interface UsimEpisode {
+  id: string;
+  videoSrc: string;
+  task: string;
+  frames: UsimFrame[];
+}
+
+export interface BoundingBox {
+  label: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export interface AnnotationMap {
+  [episodeId: string]: {
+    frames?: {
+      [frameIndex: string]: BoundingBox[];
+    };
+  };
+}
+
 // ── Asset paths ──────────────────────────────────────────────────────────────
 export const DEMO_ASSETS = {
   video: "https://static.signalor.app/static/aronnax/raw.mp4",
@@ -70,6 +108,8 @@ export const DEMO_ASSETS = {
   keypoints: "/demo/keypoints.json",
   poses: "/demo/poses.json",
   pointcloud: "/demo/map.ply",
+  usimClips: "/demo/usim_clips.json",
+  annotations: "/demo/annotations.json",
 } as const;
 
 // ── Frame lookup ─────────────────────────────────────────────────────────────
@@ -87,6 +127,20 @@ export function nearestFrameIndex<T extends { t: number }>(
   while (lo < hi) {
     const mid = (lo + hi + 1) >> 1;
     if (frames[mid].t <= t) lo = mid;
+    else hi = mid - 1;
+  }
+  return lo;
+}
+
+export function nearestUsimFrameIndex(frames: UsimFrame[], t: number): number {
+  if (frames.length === 0) return -1;
+  let lo = 0;
+  let hi = frames.length - 1;
+  if (t <= frames[0].timestamp) return 0;
+  if (t >= frames[hi].timestamp) return hi;
+  while (lo < hi) {
+    const mid = (lo + hi + 1) >> 1;
+    if (frames[mid].timestamp <= t) lo = mid;
     else hi = mid - 1;
   }
   return lo;

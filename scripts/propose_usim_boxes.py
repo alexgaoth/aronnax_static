@@ -7,8 +7,8 @@ import cv2
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VIDEOS = ROOT / "web/public/demo/videos"
-OUT = ROOT / "web/public/demo/annotations.json"
+VIDEOS = ROOT / "public/demo/videos"
+OUT = ROOT / "public/demo/annotations.json"
 
 # ponytail: one seed box per clip is enough for a useful demo; replace with a learned detector if scale matters.
 SEEDS: dict[str, tuple[int, tuple[int, int, int, int]]] = {

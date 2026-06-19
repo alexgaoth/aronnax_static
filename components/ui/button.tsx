@@ -43,11 +43,13 @@ export interface ButtonProps
   extends ButtonPrimitive.Props,
     VariantProps<typeof buttonVariants> {}
 
-function Button({ className, variant, size, ...props }: ButtonProps) {
+function Button({ className, variant, size, render, nativeButton, ...props }: ButtonProps) {
   return (
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      nativeButton={nativeButton ?? render == null}
+      render={render}
       {...props}
     />
   )
