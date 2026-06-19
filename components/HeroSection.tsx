@@ -84,8 +84,7 @@ export default function HeroSection() {
               className="text-grv-fg2 text-base lg:text-lg max-w-lg mb-8 leading-relaxed animate-fade-up"
               style={{ animationDelay: "0.54s" }}
             >
-              {COMPANY_TAGLINE}. We capture video, sonar, IMU, and control from
-              ROV missions and turn them into training-ready VLA chunks.
+              {COMPANY_TAGLINE}. USIM video, IMU, depth, and control aligned for VLA training.
             </p>
 
             <div
@@ -95,7 +94,7 @@ export default function HeroSection() {
               {[
                 { v: "0", l: "public real-world VLA datasets" },
                 { v: "25h", l: "synthetic data (USIM, industry-wide)" },
-                { v: "4", l: "modalities per timestep" },
+                { v: "4", l: "USIM signals per timestep" },
               ].map((s) => (
                 <div key={s.v}>
                   <div className="font-mono font-bold text-2xl text-grv-aqua">{s.v}</div>

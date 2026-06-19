@@ -4,15 +4,15 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 const notes = [
   {
     name: "Greensea IQ · OPENSEA",
-    body: "Rules-based navigation OS and sensor integration layer. A VLA policy could sit on top of their edge stack as a behavioral layer.",
+    body: "Navigation OS and sensor integration. A VLA policy can sit above it.",
   },
   {
     name: "SeeByte · SeeTrack",
-    body: "Mission planning and fleet C2. They handle where to go; a trained policy handles how to move moment-to-moment.",
+    body: "Mission planning says where to go. Policies handle how to move.",
   },
   {
     name: "Classical CV stacks",
-    body: "Classical CV stacks break on novel debris and zero-visibility conditions. Learned policies from pilot data handle the edge cases rules miss.",
+    body: "Rules miss edge cases; pilot data captures them.",
   },
 ];
 
@@ -33,8 +33,7 @@ export default function CompetitiveSection() {
             <span className="text-grv-aqua">not another OS</span>
           </h2>
           <p className="anim-fade-up anim-d3 text-grv-fg2 text-base mb-12 max-w-2xl leading-relaxed">
-            Incumbents sell integration software and mission tools. We focus on the missing
-            layer: aligned training data and learned control policies for underwater vehicles.
+            Incumbents sell tools. We build the missing training layer.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">

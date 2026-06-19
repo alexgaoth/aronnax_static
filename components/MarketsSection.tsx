@@ -5,17 +5,17 @@ const useCases = [
   {
     label: "Defense",
     title: "GPS-denied UUV navigation",
-    body: "Low-cost underwater vehicles need policies that handle current, turbidity, and acoustic sensing — not just pre-programmed waypoints.",
+    body: "Policies for current, turbidity, and acoustic sensing.",
   },
   {
     label: "Commercial",
     title: "Offshore inspection & IRM",
-    body: "ROV day rates and pilot shortages push operators toward resident autonomy. Better training data is the bottleneck.",
+    body: "Resident autonomy needs better pilot-derived data.",
   },
   {
     label: "Science",
     title: "Marine robotics research",
-    body: "Labs need aligned multimodal traces — perception plus control — to benchmark policies, not just perception.",
+    body: "Benchmarks for policies, not just perception.",
   },
 ];
 
@@ -36,8 +36,7 @@ export default function MarketsSection() {
             <span className="text-grv-aqua">data</span>
           </h2>
           <p className="anim-fade-up anim-d3 text-grv-fg2 text-base mb-12 max-w-2xl leading-relaxed">
-            Defense, commercial inspection, and marine research all need the same thing:
-            aligned multimodal training data for underwater vehicles.
+            One dataset format for defense, inspection, and research teams.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">

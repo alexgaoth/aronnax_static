@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   DEMO_ASSETS,
   fetchJSON,
@@ -15,6 +15,23 @@ import VideoOverlay from "./VideoOverlay";
 type LoadState = "loading" | "ready" | "error";
 
 const THRUSTER_LABELS = ["F-P", "F-S", "V-F", "V-A", "H-P", "H-S"] as const;
+
+// Mirrors underwater_vla/label.py::label_hydrodynamic exactly so the live demo
+// and the training pipeline agree on the contract. If the pilot commands forward
+// thrust but the IMU shows near-zero forward acceleration, the vehicle is fighting
+// a current — a physics-derived label with no human annotator.
+const ACCEL_THRESHOLD = 0.05;
+
+type HydroLabel = { label: "fighting_current" | "nominal"; drift: number };
+
+function labelHydrodynamic(frame: UsimFrame): HydroLabel {
+  const fwdCommand = frame.actionPwm[0] ?? 0; // channel 1 = forward thrust
+  const fwdAccel = frame.imuLinearAcceleration[0] ?? 0; // ax
+  if (Math.abs(fwdCommand) > 0.3 && Math.abs(fwdAccel) < ACCEL_THRESHOLD) {
+    return { label: "fighting_current", drift: fwdCommand - fwdAccel };
+  }
+  return { label: "nominal", drift: 0 };
+}
 
 function fmt(t: number): string {
   if (!isFinite(t)) return "00:00";
@@ -163,6 +180,19 @@ export default function PipelineView() {
   };
 
   const actionVec = frame?.actionPwm.slice(0, 6) ?? [];
+  const hydro = frame ? labelHydrodynamic(frame) : null;
+  const fighting = hydro?.label === "fighting_current";
+  const fwdAccel = frame?.imuLinearAcceleration[0] ?? 0;
+
+  // Timestamps where the hydrodynamic label fires across the whole episode —
+  // lets the presenter scrub straight to the moment, and shows how often it occurs.
+  const fightingMarkers = useMemo(() => {
+    if (!episode || !duration) return [];
+    return episode.frames
+      .filter((f) => labelHydrodynamic(f).label === "fighting_current")
+      .map((f) => (f.timestamp / duration) * 100)
+      .filter((pct) => pct >= 0 && pct <= 100);
+  }, [episode, duration]);
 
   return (
     <div>
@@ -271,6 +301,50 @@ export default function PipelineView() {
                 pwmBar(label, actionVec[i] ?? 0),
               )}
             </div>
+            {/* command-vs-response: the mismatch that derives the hydro label */}
+            <div
+              className={`mt-3 pt-3 border-t flex items-center justify-between gap-2 ${
+                fighting ? "border-grv-amber/40" : "border-grv-b"
+              }`}
+            >
+              <span className="font-mono text-[0.55rem] text-grv-fg4 uppercase tracking-wider">
+                F-P cmd → ax
+              </span>
+              <span
+                className={`font-mono text-[0.6rem] tabular-nums ${
+                  fighting ? "text-grv-amber" : "text-grv-fg3"
+                }`}
+              >
+                {(actionVec[0] ?? 0).toFixed(2)} → {fwdAccel.toFixed(3)}
+              </span>
+            </div>
+          </div>
+
+          <div
+            className={`lab-card p-4 transition-colors ${
+              fighting ? "border-grv-amber/60 bg-grv-amber/[0.06]" : ""
+            }`}
+          >
+            <span className="font-mono text-[0.58rem] tracking-widest uppercase text-grv-fg4 block mb-2">
+              Derived behavior · auto-label
+            </span>
+            <div className="flex items-baseline justify-between gap-2">
+              <span
+                className={`font-mono text-sm tracking-widest uppercase ${
+                  fighting ? "text-grv-amber" : "text-grv-fg3"
+                }`}
+              >
+                {fighting ? "▲ fighting current" : "nominal"}
+              </span>
+              {fighting && hydro && (
+                <span className="font-mono text-[0.6rem] text-grv-amber tabular-nums shrink-0">
+                  drift {hydro.drift.toFixed(3)}
+                </span>
+              )}
+            </div>
+            <p className="mt-2 font-mono text-[0.55rem] leading-relaxed text-grv-fg4">
+              derived from command vs. IMU response — no human label.
+            </p>
           </div>
 
           <div className="lab-card p-4">
@@ -310,6 +384,29 @@ export default function PipelineView() {
         </span>
       </div>
 
+      {/* fighting_current markers — scrub straight to the derived-label moments */}
+      {state === "ready" && fightingMarkers.length > 0 && (
+        <div className="mt-1.5 px-4">
+          <div className="relative h-3">
+            {fightingMarkers.map((pct, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => seek((pct / 100) * duration)}
+                title="fighting_current — jump here"
+                aria-label="Jump to fighting_current frame"
+                className="absolute top-0 h-3 w-px bg-grv-amber hover:w-0.5"
+                style={{ left: `${pct}%` }}
+              />
+            ))}
+          </div>
+          <span className="font-mono text-[0.55rem] text-grv-fg4 tracking-wider">
+            <span className="text-grv-amber">▮</span> {fightingMarkers.length}{" "}
+            fighting_current frames auto-derived
+          </span>
+        </div>
+      )}
+
       <div className="mt-2 font-mono text-[0.62rem] tracking-wide text-grv-fg4">
         {state === "loading" && (
           <span>
@@ -318,8 +415,7 @@ export default function PipelineView() {
         )}
         {state === "error" && (
           <span className="text-grv-amber">
-            ! could not load pipeline demo — {errMsg}. Run{" "}
-            <code className="text-grv-fg3">python -m underwater_vla build</code> or check{" "}
+            ! could not load pipeline demo — {errMsg}. Check{" "}
             <code className="text-grv-fg3">public/demo/usim_clips.json</code>.
           </span>
         )}

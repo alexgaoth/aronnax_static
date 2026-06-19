@@ -15,22 +15,22 @@ const stats = [
   {
     value: "0",
     label: "Public real-world VLA datasets",
-    sub: "Terrestrial robotics has nuScenes, DROID, and more. Underwater has none.",
+    sub: "Terrestrial robots have them. Underwater robots do not.",
   },
   {
     value: "25 hrs",
     label: "Synthetic training data (USIM)",
-    sub: "Useful for prototyping, but sim-to-real gaps remain large.",
+    sub: "Useful for prototyping; still not real ocean data.",
   },
   {
-    value: "$150K+",
-    label: "Typical ROV inspection day rate",
-    sub: "That makes real field data expensive to collect at scale.",
+    value: "2,275",
+    label: "USIM trajectories",
+    sub: "Public simulated BlueROV2 runs for MVP validation.",
   },
   {
     value: "4",
-    label: "Modalities we align per timestep",
-    sub: "Video, sonar, IMU, and pilot control — timestamped together.",
+    label: "USIM signals per timestep",
+    sub: "Video, IMU, depth, and control.",
   },
 ];
 
@@ -60,12 +60,12 @@ const datasetRows = [
     limit: "Perception only",
   },
   {
-    name: "Aronnax (in progress)",
+    name: "Aronnax MVP",
     domain: "Underwater",
-    modalities: "Vision · sonar · IMU · control",
-    size: "Pilot deployments",
+    modalities: "Vision · IMU · depth · control",
+    size: "Static USIM demo slice",
     actions: true,
-    limit: "Real ROV telemetry — pipeline live on USIM today",
+    limit: "Pipeline validation now; real black-box traces are the unlock",
     highlight: true,
   },
 ];
@@ -88,8 +88,7 @@ export default function ProblemSection() {
           </h2>
 
           <p className="anim-fade-up anim-d3 text-grv-fg2 text-base max-w-2xl mb-14 leading-relaxed">
-            Underwater datasets are rare, grounded-only, and usually geo-referenced for mapping,
-            not for policy training. That leaves marine autonomy mostly rule-based.
+            Underwater data is mostly mapping data. Policies need perception plus action.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-16">

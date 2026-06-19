@@ -46,8 +46,8 @@ export default function ContactSection() {
                 <span className="text-grv-aqua">{COMPANY_NAME}</span>
               </h2>
               <p className="anim-fade-up anim-d3 text-grv-fg2 text-base leading-relaxed mb-10">
-                UC San Diego / Scripps Institution of Oceanography. Open for pilot
-                partnerships and data access.
+                Built from the Bow Capital x UCSD StartBlue MVP blueprint. Open for
+                pilot conversations and data access.
               </p>
 
               <div className="flex flex-col gap-2">
@@ -77,7 +77,7 @@ export default function ContactSection() {
             <div className="anim-fade-up anim-d3 mt-12 lg:mt-0">
               <div className="border border-grv-b bg-grv-hard p-8">
                 <p className="font-mono text-[0.62rem] tracking-widest uppercase text-grv-fg4 mb-5">
-                  {COMPANY_NAME} · UCSD Scripps
+                  {COMPANY_NAME} · UCSD StartBlue
                 </p>
 
                 <Button

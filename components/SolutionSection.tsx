@@ -9,19 +9,19 @@ const steps = [
   {
     id: "01",
     title: "Passive capture",
-    body: "A hardware tap on the ROV topside Ethernet bridge records MAVLink traffic — video, sonar, joystick input, IMU, depth, and pressure — without modifying the vehicle or interrupting the pilot.",
+    body: "A topside tap records MAVLink traffic without modifying the ROV or interrupting the pilot.",
     tags: ["MAVLink", "ArduSub", "Fathom-X"],
   },
   {
     id: "02",
     title: "Align and normalize",
-    body: "Streams are timestamped and normalized into uniform rows. PWM commands are scaled to a fixed contract so training code sees consistent action vectors across vehicles.",
-    tags: ["Sync", "Normalize", "Parquet"],
+    body: "Streams become uniform rows with scaled PWM commands and consistent action vectors.",
+    tags: ["Sync", "Normalize", "JSON"],
   },
   {
     id: "03",
     title: "Auto-label and chunk",
-    body: "Physics-derived labels (e.g. fighting_current when thrust does not match IMU response) and ACT-style action chunks produce export-ready JSON and Parquet for model training.",
+    body: "Physics labels and ACT-style action chunks export to static JSON first.",
     tags: ["Hydrodynamics", "ACT", "Export"],
   },
 ];
@@ -46,11 +46,10 @@ export default function SolutionSection() {
               </h2>
 
               <p className="anim-fade-up anim-d3 text-grv-fg2 text-base leading-relaxed mb-6">
-                We record telemetry from commercial ROV missions — inspections, surveys,
-                and maintenance — and turn it into training-ready chunks through one pipeline.
+                Validate on USIM now. Design the same row contract for future ROV black-box traces.
               </p>
               <p className="anim-fade-up anim-d4 text-grv-fg2 text-base leading-relaxed mb-8">
-                Live today on USIM. Designed to run unchanged when real ROV traces arrive.
+                Static dashboard first; real telemetry stays separate until a trace exists.
               </p>
 
               <Button
@@ -59,7 +58,7 @@ export default function SolutionSection() {
                 className="anim-fade-up anim-d5"
                 render={<Link href={DEMO_PATH} />}
               >
-                View SLAM replay
+                View demo
               </Button>
             </div>
 

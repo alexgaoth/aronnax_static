@@ -21,7 +21,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: `${COMPANY_NAME} | Marine AI Research`,
+    default: COMPANY_NAME,
     template: `%s | ${COMPANY_NAME}`,
   },
   description: COMPANY_DESCRIPTION,
@@ -35,13 +35,18 @@ export const metadata: Metadata = {
     "ocean data",
     "defense technology",
     "offshore inspection",
-    "Scripps oceanography",
+    "UCSD StartBlue",
   ],
   openGraph: {
     type: "website",
-    title: `${COMPANY_NAME} | Marine AI Research`,
+    title: COMPANY_NAME,
     description: COMPANY_DESCRIPTION,
     siteName: COMPANY_NAME,
+  },
+  twitter: {
+    card: "summary",
+    title: COMPANY_NAME,
+    description: COMPANY_DESCRIPTION,
   },
 };
 
