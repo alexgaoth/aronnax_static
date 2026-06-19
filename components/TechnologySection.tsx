@@ -59,14 +59,14 @@ const phaseNotes = [
 
 export default function TechnologySection() {
   return (
-    <section id="technology" className="relative bg-grv-hard py-24 lg:py-32">
+    <section id="technology" className="relative bg-grv-hard py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
-          <div className="anim-fade-up anim-d1 mb-7">
+          <div className="anim-fade-up anim-d1 mb-4">
             <span className="section-label">04 · Pipeline</span>
           </div>
 
-          <div className="lg:flex lg:items-end lg:justify-between mb-12">
+          <div className="lg:flex lg:items-end lg:justify-between mb-6">
             <h2
               className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1]"
               style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.5rem)" }}
@@ -79,7 +79,7 @@ export default function TechnologySection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
             {pillars.map((p, i) => (
               <Card key={p.id} className={`anim-fade-up anim-d${i + 2} flex flex-col`}>
                 <CardHeader className="pb-2">

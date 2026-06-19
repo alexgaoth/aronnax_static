@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     "ocean data",
     "defense technology",
     "offshore inspection",
-    "UCSD StartBlue",
   ],
   openGraph: {
     type: "website",

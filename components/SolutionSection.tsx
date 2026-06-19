@@ -28,27 +28,27 @@ const steps = [
 
 export default function SolutionSection() {
   return (
-    <section id="approach" className="relative bg-grv-base py-24 lg:py-32">
+    <section id="approach" className="relative bg-grv-base py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
-          <div className="anim-fade-up anim-d1 mb-7">
+          <div className="anim-fade-up anim-d1 mb-4">
             <span className="section-label">03 · Approach</span>
           </div>
 
-          <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-start">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-start">
             <div>
               <h2
-                className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1] mb-5"
+                className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1] mb-3"
                 style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.5rem)" }}
               >
                 Capture what pilots{" "}
                 <span className="text-grv-aqua">already do</span>
               </h2>
 
-              <p className="anim-fade-up anim-d3 text-grv-fg2 text-base leading-relaxed mb-6">
+              <p className="anim-fade-up anim-d3 text-grv-fg2 text-base leading-relaxed mb-4">
                 Validate on USIM now. Design the same row contract for future ROV black-box traces.
               </p>
-              <p className="anim-fade-up anim-d4 text-grv-fg2 text-base leading-relaxed mb-8">
+              <p className="anim-fade-up anim-d4 text-grv-fg2 text-base leading-relaxed mb-6">
                 Static dashboard first; real telemetry stays separate until a trace exists.
               </p>
 

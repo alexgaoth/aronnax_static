@@ -44,7 +44,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-grv-hard">
+    <section className="relative min-h-[78vh] flex flex-col justify-center overflow-hidden bg-grv-hard">
       <div className="absolute inset-0 lab-grid" aria-hidden="true" />
       <div
         className="absolute inset-0 pointer-events-none"
@@ -58,11 +58,11 @@ export default function HeroSection() {
       <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-grv-hard to-transparent pointer-events-none" aria-hidden="true" />
       <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-grv-hard to-transparent pointer-events-none" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-20 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-20 pb-14 w-full">
         <div className="lg:grid lg:gap-8 lg:items-start" style={{ gridTemplateColumns: "1fr 1.6fr" }}>
           <div>
-            <div className="mb-7 animate-fade-in" style={{ animationDelay: "0.05s" }}>
-              <span className="section-label">Research lab · San Diego</span>
+            <div className="mb-4 animate-fade-in" style={{ animationDelay: "0.05s" }}>
+              <span className="section-label">Marine autonomy lab</span>
             </div>
 
             <h1
@@ -81,14 +81,14 @@ export default function HeroSection() {
             </h1>
 
             <p
-              className="text-grv-fg2 text-base lg:text-lg max-w-lg mb-8 leading-relaxed animate-fade-up"
+              className="text-grv-fg2 text-base lg:text-lg max-w-lg mb-5 leading-relaxed animate-fade-up"
               style={{ animationDelay: "0.54s" }}
             >
               {COMPANY_TAGLINE}. USIM video, IMU, depth, and control aligned for VLA training.
             </p>
 
             <div
-              className="flex flex-wrap gap-6 mb-10 animate-fade-up"
+              className="flex flex-wrap gap-5 mb-7 animate-fade-up"
               style={{ animationDelay: "0.67s" }}
             >
               {[
@@ -128,15 +128,15 @@ export default function HeroSection() {
 
           <div
             className="hidden lg:flex animate-fade-in items-center justify-center"
-            style={{ animationDelay: "0.5s", height: "70vh", minHeight: "520px", maxHeight: "800px" }}
+            style={{ animationDelay: "0.5s", height: "58vh", minHeight: "420px", maxHeight: "640px" }}
           >
             <RovViewer />
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <div className="w-px h-10 bg-gradient-to-b from-grv-b2 to-transparent" />
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
+        <div className="w-px h-6 bg-gradient-to-b from-grv-b2 to-transparent" />
         <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-grv-fg4">scroll</span>
       </div>
     </section>

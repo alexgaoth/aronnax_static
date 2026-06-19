@@ -29,14 +29,14 @@ export default function DemoSection() {
   const currentDemo = demos.find((demo) => demo.id === activeDemo) ?? demos[0];
 
   return (
-    <section id="demo" className="relative bg-grv-hard py-20 lg:py-28 border-t border-grv-b/40">
+    <section id="demo" className="relative bg-grv-hard py-12 lg:py-16 border-t border-grv-b/40">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
-          <div className="anim-fade-up anim-d1 mb-7">
+          <div className="anim-fade-up anim-d1 mb-4">
             <span className="section-label">01 · Demo</span>
           </div>
 
-          <div className="lg:flex lg:items-end lg:justify-between mb-12">
+          <div className="lg:flex lg:items-end lg:justify-between mb-6">
             <h2
               className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1]"
               style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.5rem)" }}

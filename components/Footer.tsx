@@ -45,7 +45,7 @@ export default function Footer() {
 
         <Separator className="mb-5" />
         <p className="font-mono text-[0.62rem] text-grv-fg4">
-          © {year} {COMPANY_NAME}. La Jolla, CA.
+          © {year} {COMPANY_NAME}.
         </p>
       </div>
     </footer>

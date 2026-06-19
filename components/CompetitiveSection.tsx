@@ -18,21 +18,21 @@ const notes = [
 
 export default function CompetitiveSection() {
   return (
-    <section id="company" className="relative bg-grv-hard py-24 lg:py-32">
+    <section id="company" className="relative bg-grv-hard py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
-          <div className="anim-fade-up anim-d1 mb-7">
+          <div className="anim-fade-up anim-d1 mb-4">
             <span className="section-label">06 · Position</span>
           </div>
 
           <h2
-            className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1] mb-5"
+            className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1] mb-3"
             style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.5rem)" }}
           >
             Data and policy,{" "}
             <span className="text-grv-aqua">not another OS</span>
           </h2>
-          <p className="anim-fade-up anim-d3 text-grv-fg2 text-base mb-12 max-w-2xl leading-relaxed">
+          <p className="anim-fade-up anim-d3 text-grv-fg2 text-base mb-6 max-w-2xl leading-relaxed">
             Incumbents sell tools. We build the missing training layer.
           </p>
 

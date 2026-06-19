@@ -72,26 +72,26 @@ const datasetRows = [
 
 export default function ProblemSection() {
   return (
-    <section id="platform" className="relative bg-grv-hard py-24 lg:py-32">
+    <section id="platform" className="relative bg-grv-hard py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
-          <div className="anim-fade-up anim-d1 mb-7">
+          <div className="anim-fade-up anim-d1 mb-4">
             <span className="section-label">02 · The gap</span>
           </div>
 
           <h2
-            className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1] mb-5"
+            className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1] mb-3"
             style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.5rem)" }}
           >
             Underwater AI lacks{" "}
             <span className="text-grv-aqua">training data</span>
           </h2>
 
-          <p className="anim-fade-up anim-d3 text-grv-fg2 text-base max-w-2xl mb-14 leading-relaxed">
+          <p className="anim-fade-up anim-d3 text-grv-fg2 text-base max-w-2xl mb-8 leading-relaxed">
             Underwater data is mostly mapping data. Policies need perception plus action.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
             {stats.map((stat, i) => (
               <Card key={stat.value} className={`anim-fade-up anim-d${i + 2}`}>
                 <CardHeader className="pb-2">

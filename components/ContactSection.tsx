@@ -29,25 +29,24 @@ const audiences = [
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="relative bg-grv-base py-24 lg:py-32">
+    <section id="contact" className="relative bg-grv-base py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <ScrollReveal>
-          <div className="anim-fade-up anim-d1 mb-7">
+          <div className="anim-fade-up anim-d1 mb-4">
             <span className="section-label">07 · Contact</span>
           </div>
 
-          <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-start">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-start">
             <div>
               <h2
-                className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1] mb-5"
+                className="anim-fade-up anim-d2 font-display font-bold text-grv-fg leading-[1.1] mb-3"
                 style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.5rem)" }}
               >
                 Work with{" "}
                 <span className="text-grv-aqua">{COMPANY_NAME}</span>
               </h2>
-              <p className="anim-fade-up anim-d3 text-grv-fg2 text-base leading-relaxed mb-10">
-                Built from the Bow Capital x UCSD StartBlue MVP blueprint. Open for
-                pilot conversations and data access.
+              <p className="anim-fade-up anim-d3 text-grv-fg2 text-base leading-relaxed mb-6">
+                Open for pilot conversations, data access, and underwater autonomy teams.
               </p>
 
               <div className="flex flex-col gap-2">
@@ -77,7 +76,7 @@ export default function ContactSection() {
             <div className="anim-fade-up anim-d3 mt-12 lg:mt-0">
               <div className="border border-grv-b bg-grv-hard p-8">
                 <p className="font-mono text-[0.62rem] tracking-widest uppercase text-grv-fg4 mb-5">
-                  {COMPANY_NAME} · UCSD StartBlue
+                  {COMPANY_NAME} · Underwater VLA
                 </p>
 
                 <Button
@@ -91,14 +90,9 @@ export default function ContactSection() {
 
                 <Separator className="my-6" />
 
-                <div className="flex flex-col gap-2.5">
-                  {[["Location", "La Jolla, CA"]].map(([k, v]) => (
-                    <div key={k} className="grid grid-cols-[90px_1fr] gap-2 text-xs">
-                      <span className="font-mono text-grv-fg4">{k}</span>
-                      <span className="text-grv-fg2">{v}</span>
-                    </div>
-                  ))}
-                </div>
+                <p className="text-xs leading-relaxed text-grv-fg3">
+                  Public-data MVP today. Real ROV traces are the roadmap unlock.
+                </p>
               </div>
             </div>
           </div>
